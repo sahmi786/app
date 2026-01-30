@@ -5,42 +5,122 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// ============ SUPABASE CONFIG ============
+const SUPABASE_URL = 'https://rdqszmkpaunzofsdcjrr.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkcXN6bWtwYXVuem9mc2RjanJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3OTcwNTksImV4cCI6MjA4NTM3MzA1OX0.TQrqKSeA7UabBgkqFaaTVgvUDxlpWreRfbZawIpD2-U';
+
+const supabase = {
+  from: (table) => ({
+    select: async (columns = '*') => {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${columns}`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      });
+      const data = await res.json();
+      return { data, error: res.ok ? null : data };
+    },
+    insert: async (rows) => {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+        body: JSON.stringify(rows)
+      });
+      const data = await res.json();
+      return { data, error: res.ok ? null : data };
+    },
+    selectWhere: async (column, value) => {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${column}=eq.${encodeURIComponent(value)}`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      });
+      const data = await res.json();
+      return { data, error: res.ok ? null : data };
+    }
+  })
+};
+
 const colors = { primary: '#1E4D8C', secondary: '#22B8CF', background: '#F8FAFC', white: '#FFFFFF', text: '#333333', error: '#E74C3C' };
 
 const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  useEffect(() => { AsyncStorage.getItem('user').then(d => { if(d) setUser(JSON.parse(d)); setLoading(false); }); }, []);
+  
+  useEffect(() => { 
+    AsyncStorage.getItem('user').then(d => { 
+      if(d) setUser(JSON.parse(d)); 
+      setLoading(false); 
+    }); 
+  }, []);
+
   const login = async (mobile, password) => {
-    const data = await AsyncStorage.getItem('users');
-    const users = data ? JSON.parse(data) : [];
-    const found = users.find(u => u.mobile === mobile && u.password === password);
-    if (found) { await AsyncStorage.setItem('user', JSON.stringify(found)); setUser(found); return { success: true }; }
-    return { success: false, error: 'Invalid credentials' };
+    try {
+      const { data, error } = await supabase.from('profiles').selectWhere('mobile', mobile);
+      if (error) return { success: false, error: 'Connection error' };
+      
+      const found = data?.find(u => u.password === password);
+      if (found) { 
+        const userData = { id: found.id, firstName: found.first_name, surname: found.surname, mobile: found.mobile, email: found.email };
+        await AsyncStorage.setItem('user', JSON.stringify(userData)); 
+        setUser(userData); 
+        return { success: true }; 
+      }
+      return { success: false, error: 'Invalid credentials' };
+    } catch (e) {
+      return { success: false, error: 'Connection error' };
+    }
   };
+
   const register = async (d) => {
-    const data = await AsyncStorage.getItem('users');
-    const users = data ? JSON.parse(data) : [];
-    if (users.find(u => u.mobile === d.mobile)) return { success: false, error: 'Mobile already registered' };
-    const newUser = { id: Date.now(), ...d };
-    users.push(newUser);
-    await AsyncStorage.setItem('users', JSON.stringify(users));
-    await AsyncStorage.setItem('user', JSON.stringify(newUser));
-    setUser(newUser);
-    return { success: true };
+    try {
+      // Check if mobile exists
+      const { data: existing } = await supabase.from('profiles').selectWhere('mobile', d.mobile);
+      if (existing && existing.length > 0) {
+        return { success: false, error: 'Mobile already registered' };
+      }
+
+      // Insert new user
+      const { data, error } = await supabase.from('profiles').insert({
+        mobile: d.mobile,
+        password: d.password,
+        first_name: d.firstName,
+        surname: d.surname,
+        email: d.email || null,
+        phone_type: d.phoneType || null
+      });
+
+      if (error) {
+        return { success: false, error: error.message || 'Registration failed' };
+      }
+
+      const newUser = data?.[0];
+      if (newUser) {
+        const userData = { id: newUser.id, firstName: newUser.first_name, surname: newUser.surname, mobile: newUser.mobile, email: newUser.email };
+        await AsyncStorage.setItem('user', JSON.stringify(userData));
+        setUser(userData);
+        return { success: true };
+      }
+      return { success: false, error: 'Registration failed' };
+    } catch (e) {
+      return { success: false, error: 'Connection error' };
+    }
   };
-  const logout = async () => { await AsyncStorage.removeItem('user'); setUser(null); };
+
+  const logout = async () => { 
+    await AsyncStorage.removeItem('user'); 
+    setUser(null); 
+  };
+
   return <AuthContext.Provider value={{ user, loading, login, register, logout }}>{children}</AuthContext.Provider>;
 };
 const useAuth = () => useContext(AuthContext);
 
 const LoginScreen = ({ navigation }) => {
-  const [mobile, setMobile] = useState(''); const [password, setPassword] = useState(''); const [error, setError] = useState('');
+  const [mobile, setMobile] = useState(''); const [password, setPassword] = useState(''); const [error, setError] = useState(''); const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const handleLogin = async () => {
     if (!mobile || !password) { setError('Please fill all fields'); return; }
+    setLoading(true); setError('');
     const r = await login(mobile, password);
+    setLoading(false);
     if (!r.success) setError(r.error);
   };
   return (
@@ -51,7 +131,9 @@ const LoginScreen = ({ navigation }) => {
         <TextInput style={s.input} placeholder="UAE Mobile Number" value={mobile} onChangeText={setMobile} keyboardType="phone-pad" />
         <TextInput style={s.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
         {error ? <Text style={{ color: colors.error, marginBottom: 10 }}>{error}</Text> : null}
-        <TouchableOpacity style={s.btn} onPress={handleLogin}><Text style={s.btnTxt}>Login</Text></TouchableOpacity>
+        <TouchableOpacity style={[s.btn, loading && { opacity: 0.7 }]} onPress={handleLogin} disabled={loading}>
+          <Text style={s.btnTxt}>{loading ? 'Loading...' : 'Login'}</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Register')}><Text style={{ color: colors.secondary, textAlign: 'center', marginTop: 20 }}>Don't have an account? Register</Text></TouchableOpacity>
       </View>
     </ScrollView>
@@ -59,11 +141,14 @@ const LoginScreen = ({ navigation }) => {
 };
 
 const RegisterScreen = () => {
-  const [form, setForm] = useState({ firstName: '', surname: '', mobile: '', password: '', email: '' }); const [error, setError] = useState('');
+  const [form, setForm] = useState({ firstName: '', surname: '', mobile: '', password: '', email: '', phoneType: '' }); 
+  const [error, setError] = useState(''); const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const handleReg = async () => {
     if (!form.firstName || !form.surname || !form.mobile || !form.password) { setError('Fill required fields'); return; }
+    setLoading(true); setError('');
     const r = await register(form);
+    setLoading(false);
     if (!r.success) setError(r.error);
   };
   return (
@@ -76,7 +161,9 @@ const RegisterScreen = () => {
         <TextInput style={s.input} placeholder="Password *" value={form.password} onChangeText={v => setForm({...form, password: v})} secureTextEntry />
         <TextInput style={s.input} placeholder="Email (optional)" value={form.email} onChangeText={v => setForm({...form, email: v})} />
         {error ? <Text style={{ color: colors.error, marginBottom: 10 }}>{error}</Text> : null}
-        <TouchableOpacity style={s.btn} onPress={handleReg}><Text style={s.btnTxt}>Register</Text></TouchableOpacity>
+        <TouchableOpacity style={[s.btn, loading && { opacity: 0.7 }]} onPress={handleReg} disabled={loading}>
+          <Text style={s.btnTxt}>{loading ? 'Registering...' : 'Register'}</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
