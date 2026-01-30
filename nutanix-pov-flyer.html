@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            width: 210mm;
+            height: 297mm;
+            padding: 15mm;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 8mm;
+            padding-bottom: 5mm;
+            border-bottom: 2px solid #00c7b7;
+        }
+        .header h1 {
+            font-size: 28pt;
+            color: #00c7b7;
+            margin-bottom: 3mm;
+        }
+        .header .subtitle {
+            font-size: 12pt;
+            color: #aaa;
+        }
+        .intro {
+            background: rgba(255,255,255,0.05);
+            padding: 5mm;
+            border-radius: 3mm;
+            margin-bottom: 6mm;
+            font-size: 10pt;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 14pt;
+            color: #00c7b7;
+            margin: 5mm 0 3mm 0;
+            border-left: 3px solid #00c7b7;
+            padding-left: 3mm;
+        }
+        .use-cases {
+            display: flex;
+            gap: 4mm;
+            margin-bottom: 5mm;
+        }
+        .use-case {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            padding: 4mm;
+            border-radius: 2mm;
+            border-top: 3px solid #00c7b7;
+        }
+        .use-case h3 {
+            font-size: 10pt;
+            color: #00c7b7;
+            margin-bottom: 2mm;
+        }
+        .use-case p {
+            font-size: 8pt;
+            line-height: 1.4;
+            color: #ccc;
+        }
+        .use-case .includes {
+            margin-top: 2mm;
+            font-size: 7pt;
+            color: #888;
+        }
+        .process {
+            display: flex;
+            justify-content: space-between;
+            margin: 4mm 0;
+            gap: 2mm;
+        }
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 3mm;
+            background: rgba(0,199,183,0.1);
+            border-radius: 2mm;
+        }
+        .step-num {
+            background: #00c7b7;
+            color: #1a1a2e;
+            width: 6mm;
+            height: 6mm;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8pt;
+            font-weight: bold;
+            margin-bottom: 1mm;
+        }
+        .step p {
+            font-size: 7pt;
+            color: #ccc;
+        }
+        .benefits {
+            display: flex;
+            gap: 4mm;
+            margin: 4mm 0;
+        }
+        .benefit {
+            flex: 1;
+            text-align: center;
+            padding: 3mm;
+        }
+        .benefit-icon {
+            font-size: 18pt;
+            margin-bottom: 1mm;
+        }
+        .benefit h4 {
+            font-size: 9pt;
+            color: #00c7b7;
+            margin-bottom: 1mm;
+        }
+        .benefit p {
+            font-size: 7pt;
+            color: #aaa;
+        }
+        .pricing {
+            background: rgba(0,199,183,0.15);
+            padding: 4mm;
+            border-radius: 2mm;
+            margin: 4mm 0;
+        }
+        .pricing-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .price-item h4 {
+            font-size: 9pt;
+            color: #aaa;
+        }
+        .price-item .amount {
+            font-size: 16pt;
+            color: #00c7b7;
+            font-weight: bold;
+        }
+        .price-item .period {
+            font-size: 7pt;
+            color: #888;
+        }
+        .footer {
+            margin-top: 5mm;
+            padding-top: 4mm;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logos {
+            display: flex;
+            gap: 5mm;
+            align-items: center;
+        }
+        .logo-text {
+            font-size: 12pt;
+            font-weight: bold;
+        }
+        .contact {
+            text-align: right;
+            font-size: 8pt;
+            color: #aaa;
+        }
+        .contact a {
+            color: #00c7b7;
+            text-decoration: none;
+        }
+        .tagline {
+            text-align: center;
+            font-size: 11pt;
+            color: #00c7b7;
+            font-style: italic;
+            margin-top: 3mm;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nutanix PoV Use Cases</h1>
+        <div class="subtitle">Powered by Virtigon | Hosted on OVHcloud</div>
+    </div>
+
+    <div class="intro">
+        <strong>Accelerate your Nutanix sales</strong> with hands-on Proof of Value labs. Give customers real-world experience with the Nutanix Kubernetes Platform (NKP) through tailored lab environments - provisioned, managed, and supported by Virtigon.
+    </div>
+
+    <div class="section-title">Three Ready-to-Deploy Use Cases</div>
+    <div class="use-cases">
+        <div class="use-case">
+            <h3>🚀 Cluster & App Deployment</h3>
+            <p>Deploy Kubernetes clusters using NKP workflows and validate workloads with a sample application deployment.</p>
+            <div class="includes">✓ Demo video ✓ User guide ✓ Build docs</div>
+        </div>
+        <div class="use-case">
+            <h3>🔄 GitOps & Continuous Deployment</h3>
+            <p>Implement GitOps-driven CD on NKP. Demonstrate automated app updates from source code changes.</p>
+            <div class="includes">✓ Demo video ✓ User guide ✓ Build docs</div>
+        </div>
+        <div class="use-case">
+            <h3>📊 Observability & Cost Monitoring</h3>
+            <p>Leverage Grafana, Prometheus, NKP Insight, and Kubecost for performance and cost visibility.</p>
+            <div class="includes">✓ Demo video ✓ User guide ✓ Build docs</div>
+        </div>
+    </div>
+
+    <div class="section-title">Simple Process</div>
+    <div class="process">
+        <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>Request</strong><br>Sales submits via Virtigon portal</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>Provision</strong><br>Lab deployed on OVHcloud</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>Onboard</strong><br>30-min enablement call</p>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <p><strong>Explore</strong><br>Customer follows guided journey</p>
+        </div>
+        <div class="step">
+            <div class="step-num">5</div>
+            <p><strong>Support</strong><br>Virtigon available throughout</p>
+        </div>
+        <div class="step">
+            <div class="step-num">6</div>
+            <p><strong>Follow-up</strong><br>Review and next steps</p>
+        </div>
+    </div>
+
+    <div class="section-title">Why PoV Labs?</div>
+    <div class="benefits">
+        <div class="benefit">
+            <div class="benefit-icon">✅</div>
+            <h4>Validate Needs</h4>
+            <p>Prove value with real hands-on experience</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">⚡</div>
+            <h4>Faster Sales Cycles</h4>
+            <p>Reduce time to decision with tangible demos</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">🎯</div>
+            <h4>Build Confidence</h4>
+            <p>Let customers see it working firsthand</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">🔧</div>
+            <h4>Fully Supported</h4>
+            <p>Expert guidance throughout the journey</p>
+        </div>
+    </div>
+
+    <div class="section-title">Investment</div>
+    <div class="pricing">
+        <div class="pricing-grid">
+            <div class="price-item">
+                <h4>Build Cost</h4>
+                <div class="amount">£10,000</div>
+                <div class="period">per use case (one-time)</div>
+            </div>
+            <div class="price-item">
+                <h4>Operational</h4>
+                <div class="amount">£3,000</div>
+                <div class="period">per month (engineer support)</div>
+            </div>
+            <div class="price-item">
+                <h4>Infrastructure</h4>
+                <div class="amount">£1,810</div>
+                <div class="period">per month (OVHcloud cluster)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tagline">"Give your customers the confidence to say yes"</div>
+
+    <div class="footer">
+        <div class="logos">
+            <span class="logo-text" style="color:#00c7b7">VIRTIGON</span>
+            <span style="color:#666">×</span>
+            <span class="logo-text" style="color:#024DA1">NUTANIX</span>
+            <span style="color:#666">×</span>
+            <span class="logo-text" style="color:#000D9A">OVHcloud</span>
+        </div>
+        <div class="contact">
+            <strong>Ready to accelerate your pipeline?</strong><br>
+            Contact: <a href="mailto:info@virtigon.com">info@virtigon.com</a>
+        </div>
+    </div>
+</body>
+</html>

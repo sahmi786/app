@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Sahmi",
+    "slug": "sahmi-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/sahmi-logo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/sahmi-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F8FAFC"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mercury.sahmi"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/sahmi-logo.png",
+        "backgroundColor": "#F8FAFC"
+      },
+      "package": "com.mercury.sahmi"
+    },
+    "web": {
+      "favicon": "./assets/sahmi-logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "sahmi-mercury"
+      }
+    }
+  }
+}

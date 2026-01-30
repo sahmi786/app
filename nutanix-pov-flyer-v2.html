@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0B1422 0%, #1A2332 50%, #0B1422 100%);
+            color: white;
+            width: 210mm;
+            height: 297mm;
+            padding: 12mm;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 6mm;
+            padding-bottom: 4mm;
+        }
+        .header h1 {
+            font-size: 32pt;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2mm;
+            letter-spacing: -0.5px;
+        }
+        .header .subtitle {
+            font-size: 12pt;
+            color: #8899AA;
+            font-weight: 400;
+        }
+        .logo-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10mm;
+            margin-bottom: 6mm;
+            padding: 4mm;
+            background: rgba(255,255,255,0.05);
+            border-radius: 2mm;
+        }
+        .logo-bar .logo-text {
+            font-size: 14pt;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .logo-bar .nutanix { color: #024DA1; }
+        .logo-bar .virtigon { color: #4F46E5; }
+        .logo-bar .ovhcloud { color: #000E9C; }
+        .logo-bar .divider {
+            color: #4A5568;
+            font-size: 14pt;
+        }
+        .intro {
+            background: linear-gradient(135deg, rgba(79,70,229,0.15) 0%, rgba(79,70,229,0.05) 100%);
+            border-left: 3px solid #4F46E5;
+            padding: 5mm;
+            border-radius: 0 2mm 2mm 0;
+            margin-bottom: 5mm;
+            font-size: 10.5pt;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .intro strong {
+            color: #A5B4FC;
+        }
+        .section-title {
+            font-size: 14pt;
+            font-weight: 600;
+            color: white;
+            margin: 5mm 0 3mm 0;
+            display: flex;
+            align-items: center;
+            gap: 2mm;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(180deg, #4F46E5 0%, #7C3AED 100%);
+            border-radius: 2px;
+        }
+        .use-cases {
+            display: flex;
+            gap: 3mm;
+            margin-bottom: 5mm;
+        }
+        .use-case {
+            flex: 1;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+            padding: 4mm;
+            border-radius: 2mm;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .use-case h3 {
+            font-size: 10.5pt;
+            color: #A5B4FC;
+            margin-bottom: 2mm;
+            font-weight: 600;
+        }
+        .use-case p {
+            font-size: 8.5pt;
+            line-height: 1.5;
+            color: #B0BEC5;
+        }
+        .use-case .includes {
+            margin-top: 2mm;
+            font-size: 7.5pt;
+            color: #64748B;
+        }
+        .process {
+            display: flex;
+            justify-content: space-between;
+            margin: 4mm 0;
+            gap: 2mm;
+        }
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 3mm;
+            background: rgba(79,70,229,0.1);
+            border-radius: 2mm;
+            border: 1px solid rgba(79,70,229,0.25);
+        }
+        .step-num {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            color: white;
+            width: 7mm;
+            height: 7mm;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9pt;
+            font-weight: 700;
+            margin-bottom: 1.5mm;
+        }
+        .step p {
+            font-size: 7.5pt;
+            color: #B0BEC5;
+        }
+        .step strong {
+            color: white;
+        }
+        .benefits {
+            display: flex;
+            gap: 3mm;
+            margin: 4mm 0;
+        }
+        .benefit {
+            flex: 1;
+            text-align: center;
+            padding: 3mm;
+            background: rgba(255,255,255,0.03);
+            border-radius: 2mm;
+        }
+        .benefit-icon {
+            font-size: 18pt;
+            margin-bottom: 1.5mm;
+        }
+        .benefit h4 {
+            font-size: 9pt;
+            color: #A5B4FC;
+            margin-bottom: 1mm;
+            font-weight: 600;
+        }
+        .benefit p {
+            font-size: 7.5pt;
+            color: #8899AA;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            padding: 6mm;
+            border-radius: 3mm;
+            margin: 6mm 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(79,70,229,0.3);
+        }
+        .cta-box h2 {
+            font-size: 15pt;
+            margin-bottom: 3mm;
+            font-weight: 600;
+        }
+        .cta-box .url {
+            font-size: 20pt;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+        .cta-box .subtitle {
+            font-size: 10pt;
+            color: rgba(255,255,255,0.85);
+            margin-top: 2mm;
+        }
+        .tagline {
+            text-align: center;
+            font-size: 11pt;
+            color: #A5B4FC;
+            font-style: italic;
+            margin: 4mm 0;
+        }
+        .footer {
+            margin-top: 5mm;
+            padding-top: 4mm;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logos {
+            display: flex;
+            gap: 6mm;
+            align-items: center;
+        }
+        .footer-logos span {
+            font-size: 9pt;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+        .contact {
+            text-align: right;
+            font-size: 8.5pt;
+            color: #8899AA;
+        }
+        .contact a {
+            color: #A5B4FC;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nutanix PoV Use Cases</h1>
+        <div class="subtitle">Enterprise Kubernetes Platform — Proof of Value Labs</div>
+    </div>
+
+    <div class="logo-bar">
+        <span class="logo-text nutanix">NUTANIX</span>
+        <span class="divider">×</span>
+        <span class="logo-text virtigon">VIRTIGON</span>
+        <span class="divider">×</span>
+        <span class="logo-text ovhcloud">OVHcloud</span>
+    </div>
+
+    <div class="intro">
+        Explore <strong>Nutanix Kubernetes Platform (NKP)</strong> with hands-on, self-service labs. 
+        Our PoV environments let you experience enterprise-grade Kubernetes orchestration, 
+        multi-cluster management, and cloud-native infrastructure — without the setup complexity.
+    </div>
+
+    <div class="section-title">Available Use Cases</div>
+    <div class="use-cases">
+        <div class="use-case">
+            <h3>🚀 NKP Essentials</h3>
+            <p>Deploy and manage Kubernetes clusters with Nutanix's enterprise platform. Learn cluster lifecycle, workload deployment, and GPU integration.</p>
+            <div class="includes">Includes: Management cluster + 2 workload clusters</div>
+        </div>
+        <div class="use-case">
+            <h3>🔧 GitOps & CI/CD</h3>
+            <p>Implement GitOps workflows with Flux CD integration. Automate deployments, manage configurations, and build production-ready pipelines.</p>
+            <div class="includes">Includes: GitOps tooling + sample applications</div>
+        </div>
+        <div class="use-case">
+            <h3>📊 Observability Stack</h3>
+            <p>Deploy comprehensive monitoring with Prometheus, Grafana, and centralized logging. Gain visibility across your entire Kubernetes estate.</p>
+            <div class="includes">Includes: Full observability suite pre-configured</div>
+        </div>
+    </div>
+
+    <div class="section-title">How It Works</div>
+    <div class="process">
+        <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>Select</strong><br/>Choose your use case from the portal</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>Deploy</strong><br/>Environment provisioned in minutes</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>Explore</strong><br/>Full access with guided tutorials</p>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <p><strong>Evaluate</strong><br/>Test your workloads & scenarios</p>
+        </div>
+    </div>
+
+    <div class="section-title">Why PoV Labs?</div>
+    <div class="benefits">
+        <div class="benefit">
+            <div class="benefit-icon">⚡</div>
+            <h4>Instant Access</h4>
+            <p>Self-service portal, no waiting for setup</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">🔒</div>
+            <h4>Isolated Environments</h4>
+            <p>Dedicated resources, full admin access</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">📚</div>
+            <h4>Guided Learning</h4>
+            <p>Step-by-step tutorials included</p>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">💼</div>
+            <h4>Real Scenarios</h4>
+            <p>Production-ready configurations</p>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <h2>Order Your Use Case Today</h2>
+        <div class="url">pov.virtigon.com</div>
+        <div class="subtitle">Self-service portal • Instant provisioning • Expert support available</div>
+    </div>
+
+    <div class="tagline">"Experience enterprise Kubernetes before you commit"</div>
+
+    <div class="footer">
+        <div class="footer-logos">
+            <span class="nutanix">NUTANIX</span>
+            <span>•</span>
+            <span class="virtigon">VIRTIGON</span>
+            <span>•</span>
+            <span class="ovhcloud">OVHcloud</span>
+        </div>
+        <div class="contact">
+            Questions? <a href="mailto:pov@virtigon.com">pov@virtigon.com</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sahmi App Wireframes</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f0f0; padding: 20px; }
+.wireframes { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+.phone { width: 280px; height: 580px; background: white; border-radius: 35px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; position: relative; border: 8px solid #1a1a1a; }
+.notch { width: 120px; height: 25px; background: #1a1a1a; border-radius: 0 0 15px 15px; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10; }
+.screen { height: 100%; padding: 40px 20px 20px; overflow: hidden; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); }
+.screen-title { text-align: center; font-size: 11px; color: #666; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Brand Colors */
+.brand-gradient { background: linear-gradient(135deg, #1E4D8C 0%, #22B8CF 100%); }
+.brand-blue { color: #1E4D8C; }
+.brand-teal { color: #22B8CF; }
+
+/* Components */
+.logo-placeholder { width: 180px; height: 60px; margin: 0 auto 20px; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="%231E4D8C">سهمي Sahmi</text></svg>') center/contain no-repeat; }
+
+.input { width: 100%; padding: 14px 16px; border: 1.5px solid #e0e0e0; border-radius: 10px; margin-bottom: 12px; font-size: 14px; background: #fafafa; }
+.input:focus { border-color: #22B8CF; }
+.input-label { font-size: 12px; color: #666; margin-bottom: 4px; display: block; }
+
+.btn { width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 10px; }
+.btn-primary { background: linear-gradient(135deg, #1E4D8C 0%, #22B8CF 100%); color: white; }
+.btn-secondary { background: white; color: #1E4D8C; border: 2px solid #1E4D8C; }
+.btn-text { background: none; color: #22B8CF; font-size: 13px; }
+
+.clock-widget { display: flex; justify-content: space-between; margin: 15px 0; }
+.clock { text-align: center; flex: 1; padding: 8px 4px; background: #f8fafc; border-radius: 8px; margin: 0 3px; }
+.clock-time { font-size: 16px; font-weight: 700; color: #1E4D8C; }
+.clock-city { font-size: 9px; color: #666; margin-top: 2px; }
+
+.nav-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: white; border-top: 1px solid #eee; display: flex; justify-content: space-around; align-items: center; padding-bottom: 5px; }
+.nav-item { text-align: center; font-size: 10px; color: #999; }
+.nav-item.active { color: #1E4D8C; }
+.nav-icon { width: 24px; height: 24px; background: #ddd; border-radius: 6px; margin: 0 auto 4px; }
+.nav-item.active .nav-icon { background: linear-gradient(135deg, #1E4D8C 0%, #22B8CF 100%); }
+
+.welcome { font-size: 20px; font-weight: 700; color: #1E4D8C; margin-bottom: 5px; }
+.subtitle { font-size: 13px; color: #888; margin-bottom: 20px; }
+
+.card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #f0f0f0; }
+.card-title { font-size: 14px; font-weight: 600; color: #1E4D8C; margin-bottom: 8px; }
+
+.form-row { margin-bottom: 12px; }
+.textarea { width: 100%; padding: 12px; border: 1.5px solid #e0e0e0; border-radius: 10px; font-size: 13px; min-height: 80px; resize: none; background: #fafafa; }
+
+.link { color: #22B8CF; font-size: 13px; text-decoration: none; }
+.divider { text-align: center; color: #999; font-size: 12px; margin: 15px 0; }
+
+.about-content { font-size: 13px; color: #555; line-height: 1.6; }
+.about-content p { margin-bottom: 12px; }
+
+.success-msg { background: #d4edda; color: #155724; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; }
+.edit-icon { font-size: 10px; color: #22B8CF; }
+</style>
+</head>
+<body>
+
+<h1 style="text-align: center; color: #1E4D8C; margin-bottom: 30px;">📱 Sahmi App Wireframes</h1>
+
+<div class="wireframes">
+
+<!-- SCREEN 1: HOME / LOGIN -->
+<div>
+<p class="screen-title">1. Home / Login</p>
+<div class="phone">
+<div class="notch"></div>
+<div class="screen">
+<div style="height: 100%; display: flex; flex-direction: column;">
+<div style="flex: 1;">
+<div class="logo-placeholder"></div>
+<p style="text-align: center; font-size: 12px; color: #888; margin-bottom: 25px;">Your gateway to Mercury</p>
+
+<div class="input-label">UAE Mobile Number</div>
+<div class="input" style="color: #999;">+971 5X XXX XXXX</div>
+
+<div class="input-label">Password</div>
+<div class="input" style="color: #999;">••••••••</div>
+
+<button class="btn btn-primary">Login</button>
+
+<p style="text-align: center; font-size: 13px; color: #666;">
+Don't have an account? <a class="link">Register</a>
+</p>
+
+<div class="divider">— World Clocks —</div>
+
+<div class="clock-widget">
+<div class="clock">
+<div class="clock-time">16:30</div>
+<div class="clock-city">UAE</div>
+</div>
+<div class="clock">
+<div class="clock-time">18:00</div>
+<div class="clock-city">India</div>
+</div>
+<div class="clock">
+<div class="clock-time">17:30</div>
+<div class="clock-city">Pakistan</div>
+</div>
+<div class="clock">
+<div class="clock-time">13:30</div>
+<div class="clock-city">Nigeria</div>
+</div>
+</div>
+</div>
+
+<div class="nav-bar">
+<div class="nav-item active"><div class="nav-icon"></div>Home</div>
+<div class="nav-item"><div class="nav-icon"></div>About</div>
+<div class="nav-item"><div class="nav-icon"></div>Contact</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN 2: REGISTRATION -->
+<div>
+<p class="screen-title">2. Registration</p>
+<div class="phone">
+<div class="notch"></div>
+<div class="screen" style="padding-top: 35px;">
+<div style="height: 100%; display: flex; flex-direction: column;">
+<div style="flex: 1; overflow-y: auto; padding-bottom: 70px;">
+<p style="font-size: 20px; font-weight: 700; color: #1E4D8C; margin-bottom: 5px;">Create Account</p>
+<p style="font-size: 12px; color: #888; margin-bottom: 20px;">Join the Sahmi community</p>
+
+<div class="input-label">First Name *</div>
+<div class="input" style="color: #999;">Enter first name</div>
+
+<div class="input-label">Surname *</div>
+<div class="input" style="color: #999;">Enter surname</div>
+
+<div class="input-label">UAE Mobile Number *</div>
+<div class="input" style="color: #999;">+971 5X XXX XXXX</div>
+
+<div class="input-label">Password *</div>
+<div class="input" style="color: #999;">Min 8 characters</div>
+
+<div class="input-label">Email (Optional)</div>
+<div class="input" style="color: #999;">email@example.com</div>
+
+<div class="input-label">Phone Type (Optional)</div>
+<div class="input" style="color: #999; display: flex; justify-content: space-between; align-items: center;">
+Select... <span style="font-size: 10px;">▼</span>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin: 15px 0;">
+<div style="width: 18px; height: 18px; border: 2px solid #1E4D8C; border-radius: 4px; margin-right: 10px; flex-shrink: 0;"></div>
+<span style="font-size: 11px; color: #666;">I agree to the Terms of Service and Privacy Policy</span>
+</div>
+
+<button class="btn btn-primary">Create Account</button>
+
+<p style="text-align: center; font-size: 13px; color: #666;">
+Already have an account? <a class="link">Login</a>
+</p>
+</div>
+
+<div class="nav-bar">
+<div class="nav-item"><div class="nav-icon"></div>Home</div>
+<div class="nav-item"><div class="nav-icon"></div>About</div>
+<div class="nav-item"><div class="nav-icon"></div>Contact</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN 3: DASHBOARD -->
+<div>
+<p class="screen-title">3. Dashboard (Logged In)</p>
+<div class="phone">
+<div class="notch"></div>
+<div class="screen">
+<div style="height: 100%; display: flex; flex-direction: column;">
+<div style="flex: 1;">
+<div class="welcome">Welcome, Ahmed! 👋</div>
+<div class="subtitle">Good afternoon</div>
+
+<div class="card">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center;">
+World Clocks <span class="edit-icon">✏️ Edit</span>
+</div>
+<div class="clock-widget" style="margin: 10px 0 5px;">
+<div class="clock">
+<div class="clock-time">16:30</div>
+<div class="clock-city">Dubai</div>
+</div>
+<div class="clock">
+<div class="clock-time">18:00</div>
+<div class="clock-city">Mumbai</div>
+</div>
+<div class="clock">
+<div class="clock-time">17:30</div>
+<div class="clock-city">Karachi</div>
+</div>
+<div class="clock">
+<div class="clock-time">13:30</div>
+<div class="clock-city">Lagos</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">Quick Links</div>
+<div style="display: flex; gap: 10px;">
+<div style="flex: 1; background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+<div style="font-size: 20px; margin-bottom: 5px;">ℹ️</div>
+<div style="font-size: 11px; color: #666;">About</div>
+</div>
+<div style="flex: 1; background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+<div style="font-size: 20px; margin-bottom: 5px;">✉️</div>
+<div style="font-size: 11px; color: #666;">Contact</div>
+</div>
+<div style="flex: 1; background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+<div style="font-size: 20px; margin-bottom: 5px;">⚙️</div>
+<div style="font-size: 11px; color: #666;">Settings</div>
+</div>
+</div>
+</div>
+
+<button class="btn btn-secondary" style="margin-top: 15px;">Logout</button>
+</div>
+
+<div class="nav-bar">
+<div class="nav-item active"><div class="nav-icon"></div>Home</div>
+<div class="nav-item"><div class="nav-icon"></div>About</div>
+<div class="nav-item"><div class="nav-icon"></div>Contact</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN 4: ABOUT MERCURY -->
+<div>
+<p class="screen-title">4. About Mercury</p>
+<div class="phone">
+<div class="notch"></div>
+<div class="screen">
+<div style="height: 100%; display: flex; flex-direction: column;">
+<div style="flex: 1; overflow-y: auto; padding-bottom: 70px;">
+<p style="font-size: 20px; font-weight: 700; color: #1E4D8C; margin-bottom: 15px;">About Mercury</p>
+
+<div style="width: 100%; height: 80px; background: linear-gradient(135deg, #1E4D8C 0%, #22B8CF 100%); border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+<span style="color: white; font-weight: bold; font-size: 18px;">MERCURY</span>
+</div>
+
+<div class="about-content">
+<p><strong>Who We Are</strong></p>
+<p>Mercury Networks is a leading technology solutions provider, delivering innovative services across the Middle East and beyond.</p>
+
+<p><strong>Our Mission</strong></p>
+<p>To empower businesses with cutting-edge technology solutions that drive growth and efficiency.</p>
+
+<p><strong>Our Services</strong></p>
+<p>• Enterprise Solutions<br>
+• Cloud Infrastructure<br>
+• Digital Transformation<br>
+• Managed Services</p>
+
+<p><strong>Contact</strong></p>
+<p>📍 Dubai, UAE<br>
+🌐 mercury-networks.com</p>
+</div>
+</div>
+
+<div class="nav-bar">
+<div class="nav-item"><div class="nav-icon"></div>Home</div>
+<div class="nav-item active"><div class="nav-icon"></div>About</div>
+<div class="nav-item"><div class="nav-icon"></div>Contact</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN 5: CONTACT US -->
+<div>
+<p class="screen-title">5. Contact Us</p>
+<div class="phone">
+<div class="notch"></div>
+<div class="screen">
+<div style="height: 100%; display: flex; flex-direction: column;">
+<div style="flex: 1; overflow-y: auto; padding-bottom: 70px;">
+<p style="font-size: 20px; font-weight: 700; color: #1E4D8C; margin-bottom: 5px;">Contact Us</p>
+<p style="font-size: 12px; color: #888; margin-bottom: 20px;">We'd love to hear from you</p>
+
+<div class="form-row">
+<div class="input-label">Your Name</div>
+<div class="input" style="color: #999;">Enter your name</div>
+</div>
+
+<div class="form-row">
+<div class="input-label">Email Address</div>
+<div class="input" style="color: #999;">email@example.com</div>
+</div>
+
+<div class="form-row">
+<div class="input-label">Subject</div>
+<div class="input" style="color: #999;">What is this about?</div>
+</div>
+
+<div class="form-row">
+<div class="input-label">Message</div>
+<div class="textarea" style="color: #999;">Type your message here...</div>
+</div>
+
+<button class="btn btn-primary">Send Message</button>
+
+<div class="success-msg" style="margin-top: 15px;">
+✓ Message sent successfully!<br>
+<span style="font-size: 11px;">We'll get back to you soon.</span>
+</div>
+</div>
+
+<div class="nav-bar">
+<div class="nav-item"><div class="nav-icon"></div>Home</div>
+<div class="nav-item"><div class="nav-icon"></div>About</div>
+<div class="nav-item active"><div class="nav-icon"></div>Contact</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<p style="text-align: center; color: #888; margin-top: 30px; font-size: 12px;">
+Sahmi App Wireframes • Mercury Networks • January 2026
+</p>
+
+</body>
+</html>

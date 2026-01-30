@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1200px;
+            height: 627px;
+            background: linear-gradient(135deg, #1E1B4B 0%, #312E81 30%, #4F46E5 70%, #7C3AED 100%);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            color: white;
+            padding: 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-shape1 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+        .bg-shape2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+            bottom: -80px;
+            left: 200px;
+        }
+        .bg-shape3 {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+            top: 100px;
+            right: 300px;
+        }
+        .left {
+            flex: 1;
+            z-index: 10;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .title {
+            font-size: 82px;
+            font-weight: 800;
+            line-height: 1.0;
+            margin-bottom: 25px;
+            color: white;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 26px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 35px;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+        .author {
+            font-size: 22px;
+            color: #E0E7FF;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .author-line {
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #A5B4FC, transparent);
+            border-radius: 2px;
+        }
+        .right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .icon-container {
+            width: 280px;
+            height: 280px;
+            position: relative;
+        }
+        .hex {
+            position: absolute;
+            width: 140px;
+            height: 161px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .hex1 {
+            top: 20px;
+            left: 70px;
+        }
+        .hex2 {
+            top: 90px;
+            left: 140px;
+            transform: scale(0.75);
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
+        }
+        .hex3 {
+            top: 90px;
+            left: 20px;
+            transform: scale(0.55);
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.03) 100%);
+        }
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(167,139,250,0.4) 0%, transparent 70%);
+            top: 40px;
+            left: 40px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shape1"></div>
+    <div class="bg-shape2"></div>
+    <div class="bg-shape3"></div>
+    <div class="left">
+        <div class="badge">FEBRUARY 2026</div>
+        <div class="title">The Automation<br/>Edge</div>
+        <div class="subtitle">Monthly insights on Infrastructure, AI & Leadership</div>
+        <div class="author">
+            <span class="author-line"></span>
+            Ghufran Shah
+        </div>
+    </div>
+    <div class="right">
+        <div class="icon-container">
+            <div class="glow"></div>
+            <div class="hex hex1"></div>
+            <div class="hex hex2"></div>
+            <div class="hex hex3"></div>
+        </div>
+    </div>
+</body>
+</html>
