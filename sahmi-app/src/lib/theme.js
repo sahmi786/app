@@ -45,7 +45,5 @@ export const borderRadius = {
 // Default world clock cities
 export const defaultClocks = [
   { id: '1', city: 'Dubai', timezone: 'Asia/Dubai', country: 'UAE' },
-  { id: '2', city: 'Mumbai', timezone: 'Asia/Kolkata', country: 'India' },
-  { id: '3', city: 'Karachi', timezone: 'Asia/Karachi', country: 'Pakistan' },
-  { id: '4', city: 'Lagos', timezone: 'Africa/Lagos', country: 'Nigeria' },
+  { id: '2', city: 'Karachi', timezone: 'Asia/Karachi', country: 'Pakistan' },
 ];
